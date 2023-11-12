@@ -11,7 +11,7 @@ import { CarProps } from './../types/index';
 import { CarDetails, CustomButton } from '.';
 
 // Import Utils - CalculateCarRent
-import { calculateCarRent } from '@/utils';
+import { calculateCarRent, generateCarImageUrl } from '@/utils';
 
 // Car Card Props
 interface CarCardProps {
@@ -23,7 +23,6 @@ const CarCard = ({ car }: CarCardProps) => {
   const { city_mpg, year, make, model, transmission, drive } = car
 
   const carRent = calculateCarRent(city_mpg, year)
-
   const [isOpen, setIsOpen] = useState(false)
 
   return (
@@ -47,7 +46,7 @@ const CarCard = ({ car }: CarCardProps) => {
       {/* Image */}
       <div className='relative w-full h-40 my-3 object-contain'>
         <Image
-          src='/hero.png'
+          src={generateCarImageUrl(car)}
           alt='car-model'
           fill
           priority
